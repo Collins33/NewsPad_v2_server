@@ -4,7 +4,8 @@
   "description": "Server side of the NewsPad_v2 client. This handles user authentication and saving news articles.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
     "google-spreadsheet": "^2.0.8",
     "mongoose": "^5.6.6",
     "morgan": "^1.9.1",
-    "nodemailer": "^6.3.0"
+    "nodemailer": "^6.3.0",
+    "chai": "^4.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

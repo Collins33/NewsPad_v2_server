@@ -4,6 +4,6 @@ const userController = require("../controllers/userController");
 const userMiddleware = require("../middleware/userMiddleware.js");
 
 router.get("/", userController.user_get_all);
-router.post("/", userController.create_user);
+router.post("/", userMiddleware.checkExistingEmail, userController.create_user);
 
 module.exports = router;

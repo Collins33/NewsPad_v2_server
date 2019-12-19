@@ -11,6 +11,11 @@ module.exports = async () => {
       console.log(error);
     }
   }
+  try {
+    await mongoose.connect(databaseConnection, { useNewUrlParser: true });
+  } catch (error) {
+    console.log(error);
+  }
   /**
    * Use the default node js promise
    */

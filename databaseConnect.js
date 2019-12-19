@@ -11,4 +11,8 @@ module.exports = async () => {
       console.log(error);
     }
   }
+  /**
+   * Use the default node js promise
+   */
+  mongoose.Promise = global.Promise;
 };

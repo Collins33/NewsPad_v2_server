@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const bycrypt = require("bcrypt");
+const mongoose = require("mongoose");
 
 // import user schema
 const User = require("../models/user");
@@ -24,5 +26,32 @@ exports.user_get_all = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+/**
+ * @method create_user
+ * @summary - creates a user in the database
+ * @param request body, response body
+ * @returns json message
+ */
+exports.create_user = async (req, res, next) => {
+  const password = req.body.password;
+  const email = req.body.email;
+  try {
+    const hash = await bycrypt.hash(password, 10);
+    const user = new User({
+      _id: new mongoose.Types.ObjectId(),
+      email: email,
+      password: hash
+    });
+    const result = await user.save();
+    res.status(201).json({
+      message: "User was created successfully"
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: err
+    });
   }
 };

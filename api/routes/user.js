@@ -5,7 +5,7 @@ const userMiddleware = require("../middleware/userMiddleware.js");
 
 router.get("/", userController.user_get_all);
 router.post(
-  "/",
+  "/registration",
   userMiddleware.checkExistingEmail,
   userMiddleware.checkEmptyUserCredentials,
   userController.create_user

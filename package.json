@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/Collins33/NewsPad_v2_server.git"
   },
+  "engines": {
+    "node": "11.0.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

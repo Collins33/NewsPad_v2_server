@@ -55,3 +55,45 @@ exports.create_user = async (req, res, next) => {
     });
   }
 };
+
+/**
+ * @method user_login
+ * @summary - sign up a user
+ * @param request body, response body
+ * @returns json message
+ */
+exports.user_login = async (req, res, next) => {
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+    const login_user = await User.find({ email: email });
+    console.log(login_user);
+    if (login_user.length >= 1) {
+      const found_user_password = login_user[0].password;
+      // returns true if the comparison is fine
+      try {
+        const comparePassword = await bycrypt.compare(
+          password,
+          found_user_password
+        );
+        if (comparePassword) {
+          return res.status(200).json({
+            message: "Auth successfully"
+          });
+        }
+      } catch (error) {
+        return res.status(401).json({
+          message: "Auth failed"
+        });
+      }
+    } else {
+      return res.status(401).json({
+        message: "The user does not exist"
+      });
+    }
+  } catch (error) {
+    return res.status(401).json({
+      message: error
+    });
+  }
+};

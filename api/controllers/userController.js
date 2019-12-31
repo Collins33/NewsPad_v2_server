@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bycrypt = require("bcrypt");
 const mongoose = require("mongoose");
-
+const token_generator = require("../utils/tokenGeneration.js");
+const jwt_key = process.env.JWT_KEY;
 // import user schema
 const User = require("../models/user");
 
@@ -67,7 +68,6 @@ exports.user_login = async (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     const login_user = await User.find({ email: email });
-    console.log(login_user);
     if (login_user.length >= 1) {
       const found_user_password = login_user[0].password;
       // returns true if the comparison is fine
@@ -77,8 +77,10 @@ exports.user_login = async (req, res, next) => {
           found_user_password
         );
         if (comparePassword) {
+          const token = token_generator(login_user, jwt_key);
           return res.status(200).json({
-            message: "Auth successfully"
+            message: "Auth successfully",
+            token
           });
         }
       } catch (error) {

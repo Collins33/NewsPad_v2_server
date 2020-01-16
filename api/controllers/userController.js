@@ -80,7 +80,8 @@ exports.user_login = async (req, res, next) => {
           const token = token_generator(login_user, jwt_key);
           return res.status(200).json({
             message: "Auth successfully",
-            token
+            token,
+            email
           });
         }
       } catch (error) {

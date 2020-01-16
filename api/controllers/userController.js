@@ -83,6 +83,10 @@ exports.user_login = async (req, res, next) => {
             token,
             email
           });
+        } else {
+          return res.status(401).json({
+            message: "Auth failed"
+          });
         }
       } catch (error) {
         return res.status(401).json({

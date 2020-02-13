@@ -1,5 +1,3 @@
-const express = require("express");
-const router = express.Router();
 const bycrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const token_generator = require("../utils/tokenGeneration.js");

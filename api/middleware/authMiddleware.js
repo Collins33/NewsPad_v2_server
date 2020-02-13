@@ -11,6 +11,7 @@ exports.checkAuth = (req, res, next) => {
     const headerToken = req.headers["authorization"];
     const token = headerToken.slice(7, headerToken.length);
     const decoded = jwt.verify(token, process.env.JWT_KEY);
+    console.log(decoded, "<><><><><><>");
     next();
   } catch (error) {
     console.log(error);

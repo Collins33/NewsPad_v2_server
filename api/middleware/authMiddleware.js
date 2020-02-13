@@ -1,22 +1,21 @@
 const jwt = require("jsonwebtoken");
 
 /**
- * @method checkAuth
- * @summary - Check to ensure the user is authenticated
+ * @method checkValidToken
+ * @summary - Check to ensure the user has provided a token
  * @param request body, response body
  * @returns json message
  */
-exports.checkAuth = (req, res, next) => {
+exports.checkValidToken = (req, res, next) => {
   try {
     const headerToken = req.headers["authorization"];
     const token = headerToken.slice(7, headerToken.length);
     const decoded = jwt.verify(token, process.env.JWT_KEY);
-    console.log(decoded, "<><><><><><>");
     next();
   } catch (error) {
     console.log(error);
-    return res.status(401).json({
-      message: "Auth failed"
+    return res.status(500).json({
+      message: "Provide a valid token"
     });
   }
 };

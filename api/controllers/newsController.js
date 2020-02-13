@@ -11,11 +11,8 @@ const jwt = require("jsonwebtoken");
 
 exports.create_news = async (req, res, next) => {
   const { author, title, description, url, urlToImage, source } = req.body;
+  const user = req.decodedToken.email;
   try {
-    const headerToken = req.headers["authorization"];
-    const token = headerToken.slice(7, headerToken.length);
-    const decoded = jwt.verify(token, process.env.JWT_KEY);
-    const user = decoded.email;
     const news = new News({
       _id: new mongoose.Types.ObjectId(),
       user,

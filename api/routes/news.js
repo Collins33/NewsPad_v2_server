@@ -4,6 +4,6 @@ const newsController = require("../controllers/newsController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 // add news article to the database
-router.post("/news", authMiddleware.checkAuth, newsController.create_news);
+router.post("/", authMiddleware.checkAuth, newsController.create_news);
 
 module.exports = router;

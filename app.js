@@ -12,6 +12,7 @@ databaseConnection();
 
 // setup middleware that all requests will go through
 const userRoutes = require("./api/routes/user");
+const newsRoutes = require("./api/routes/news");
 /**
  * Give access control
  * to any client
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/news", newsRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({

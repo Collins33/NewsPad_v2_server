@@ -14,8 +14,7 @@ exports.checkValidToken = (req, res, next) => {
     req.decodedToken = decoded;
     next();
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({
+    return res.status(403).json({
       message: "Provide a valid token"
     });
   }

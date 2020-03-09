@@ -5,7 +5,7 @@ const newSchema = mongoose.Schema({
   author: { type: String },
   title: { type: String },
   description: { type: String },
-  url: { type: String, unique: true },
+  url: { type: String },
   urlToImage: { type: String },
   source: { type: String }
 });

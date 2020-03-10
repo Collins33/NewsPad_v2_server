@@ -34,3 +34,34 @@ exports.create_news = async (req, res, next) => {
     });
   }
 };
+
+/**
+ * @method get_news
+ * @summary - retrieve saved news articles from the database
+ * @param request body, response body
+ * @returns json message
+ */
+exports.get_news = async (req, res, next) => {
+  const user = req.decodedToken.email;
+  try {
+    const newsArticles = await News.find({ user: user });
+    const response = {
+      count: newsArticles.length,
+      news: newsArticles.map(newsArticle => {
+        return {
+          author: newsArticle.author,
+          title: newsArticle.title,
+          description: newsArticle.description,
+          url: newsArticle.url,
+          urlToImage: newsArticle.urlToImage,
+          source: newsArticle.source
+        };
+      })
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({
+      error
+    });
+  }
+};

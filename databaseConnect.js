@@ -4,6 +4,9 @@ require("dotenv").config;
 module.exports = async () => {
   const environment = process.env.ENVIRONMENT;
   const databaseConnection = process.env.MONGO_DATABASE_URL;
+  const productionDatabaseConnection =
+    process.env.MONGO_DATABASE_PRODUCTION_URL;
+
   if (environment == "local") {
     try {
       await mongoose.connect(databaseConnection, { useNewUrlParser: true });
@@ -12,7 +15,9 @@ module.exports = async () => {
     }
   }
   try {
-    await mongoose.connect(databaseConnection, { useNewUrlParser: true });
+    await mongoose.connect(productionDatabaseConnection, {
+      useNewUrlParser: true
+    });
   } catch (error) {
     console.log(error);
   }

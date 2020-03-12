@@ -1,6 +1,6 @@
 # NewsPad_v2_server
 
-RESTful service that powers the newspad_client_v2.
+RESTful service that powers the [newspad_client_v2](https://newspadv2client.herokuapp.com/).
 
 ## Getting Started
 
@@ -44,8 +44,11 @@ RESTful service that powers the newspad_client_v2.
 | POST /api/v1/users/signup | This will create the create an accoount |
 | POST /api/v1/users/login  |        This will login the user         |
 | POST /api/V1/news         |      This will save a news article      |
+| GET /api/V1/news          | This will retrieve saved news articles  |
 
-## MAKING A POST REQUEST ON POSTMAN(SIGN UP)
+## MAKING A POST REQUEST ON POSTMAN
+
+# SIGN UP
 
 ```
 Payload
@@ -56,6 +59,45 @@ Payload
 Response
 {
     "message": "User was created successfully"
+}
+```
+
+# LOGIN
+
+```
+Payload
+{
+	"email":"name.name@gmail.com",
+	"password":"123bunnyhop"
+}
+Response
+{
+    "message": "Auth successfully",
+    "token": "xxxxxxxxxxxx",
+    "email": "name.name@gmail.com"
+}
+```
+
+# SAVE NEWS ARTICLE
+
+- Make sure to provide a valid token when saving the article
+
+```
+Payload
+{
+	{
+	"author":"John Doe",
+	"title":"The virus",
+	"description":"The john Doe virus",
+	"url":"www.wwe/instagram/kane/me/true/now/instead/sting/MN/stuff/kinky.com",
+	"urlToImage":null,
+	"source":"Nou"
+}
+
+}
+Response
+{
+   "response":"The article was saved successfully"
 }
 ```
 

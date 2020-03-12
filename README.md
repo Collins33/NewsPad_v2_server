@@ -4,7 +4,7 @@ RESTful service that powers the [newspad_client_v2](https://newspadv2client.hero
 
 ## Getting Started
 
-- git clone https://github.com/Collins33/Population-management-API.git
+- git clone https://github.com/Collins33/NewsPad_v2_server.git
 - cd into the project folder
 - run `npm install`
 
@@ -28,7 +28,7 @@ RESTful service that powers the [newspad_client_v2](https://newspadv2client.hero
 ## Running the tests
 
 - create test database on mongo atlas
-- ensure the IP security settings allow connctions from everywhere
+- ensure the IP security settings allow connections from everywhere
 - save the database url given
 
 ```

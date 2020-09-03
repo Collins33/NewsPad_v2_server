@@ -16,4 +16,8 @@ router.post(
 // user login route
 router.post("/login", userController.user_login);
 
+// google auth endpoint
+router.post("/auth/google", userController.loginGoogleUser);
+
+
 module.exports = router;

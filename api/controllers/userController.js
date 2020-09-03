@@ -102,3 +102,22 @@ exports.user_login = async (req, res, next) => {
     });
   }
 };
+
+
+/**
+ * @method loginGoogleUser
+ * @summary - sign up a user using google auth
+ * @param request body, response body
+ * @returns json message
+ */
+
+exports.loginGoogleUser = async()=>
+{
+  try{
+    const token = req.body
+    console.log(token, "GOOGLE TOKEN")
+  }catch(error)
+  {
+    console.log("ERROR OCCURRED", error)
+  }
+}

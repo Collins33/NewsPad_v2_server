@@ -111,11 +111,10 @@ exports.user_login = async (req, res, next) => {
  * @returns json message
  */
 
-exports.loginGoogleUser = async()=>
+exports.loginGoogleUser = async(req, res, next)=>
 {
   try{
-    const token = req.body
-    console.log(token, "GOOGLE TOKEN")
+    const token = req.body.googleAuth;
   }catch(error)
   {
     console.log("ERROR OCCURRED", error)

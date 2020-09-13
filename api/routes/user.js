@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 const userMiddleware = require("../middleware/userMiddleware.js");
+const socialAuthMiddleware = require("../middleware/socialAuthMiddleware.js");
 
 router.get("/", userController.user_get_all);
 
@@ -17,7 +18,12 @@ router.post(
 router.post("/login", userController.user_login);
 
 // google auth endpoint
-router.post("/auth/google", userController.loginGoogleUser);
+router.post(
+  "/auth/google", 
+  socialAuthMiddleware.verifySocialAuthToken, 
+  socialAuthMiddleware.extractUserInformation,
+  userController.loginGoogleUser
+);
 
 
 module.exports = router;

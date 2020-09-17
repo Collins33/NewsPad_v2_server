@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
  */
 module.exports = (user, jwt_key) => {
   const token = jwt.sign(
-    { email: user[0].email, password: user[0].password },
+    { id: user[0]._id},
     jwt_key,
     { expiresIn: "5000000000000000000000000h" }
   );

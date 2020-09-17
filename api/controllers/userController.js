@@ -68,6 +68,10 @@ exports.user_login = async (req, res, next) => {
     const login_user = await User.find({ email: email });
     if (login_user.length >= 1) {
       const found_user_password = login_user[0].password;
+      /**
+       * Fails because password removed from user model
+       * WILL FIX
+       */
       // returns true if the comparison is fine
       try {
         const comparePassword = await bycrypt.compare(

@@ -22,6 +22,7 @@ module.exports = async () => {
     console.log(error);
   }
   /**
+   * Instruct moongose on what promise lib to use
    * Use the default node js promise
    */
   mongoose.Promise = global.Promise;

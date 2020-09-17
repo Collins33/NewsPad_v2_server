@@ -118,8 +118,14 @@ exports.user_login = async (req, res, next) => {
 exports.loginGoogleUser = async(req, res, next)=>
 {
   try{
-    const userEmail = req.email;
-    console.log(userEmail, "USER EMAIL")
+    console.log("Got here");
+    console.log("Existing user", req.user)
+    const token = token_generator(req.user, jwt_key);
+    return res.status(200).json({
+      message: "Auth successfully",
+      token,
+      email: req.user[0].email
+    });
   }catch(error)
   {
     console.log("ERROR OCCURRED", error)

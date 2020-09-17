@@ -22,7 +22,8 @@ router.post("/login", userController.user_login);
 // google auth endpoint
 router.post(
   "/auth/google", 
-  passport.authenticate("googleToken", {session:false})
+  passport.authenticate("googleToken", {session:false}),
+  userController.loginGoogleUser
 );
 
 

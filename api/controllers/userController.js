@@ -118,7 +118,8 @@ exports.user_login = async (req, res, next) => {
 exports.loginGoogleUser = async(req, res, next)=>
 {
   try{
-    const token = req.body.googleAuth;
+    const userEmail = req.email;
+    console.log(userEmail, "USER EMAIL")
   }catch(error)
   {
     console.log("ERROR OCCURRED", error)

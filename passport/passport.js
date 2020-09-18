@@ -10,7 +10,7 @@ const tokenGenerator = require("../api/utils/tokenGeneration");
 // Google oath strategy
 clientID = process.env.CLIENTID
 clientSecret = process.env.CLIENTSECRET
-
+console.log(clientID, clientSecret, "CLIENT SECRET AND ID")
 
 passport.use("googleToken", new GoogleTokenStrategy({
   clientID,

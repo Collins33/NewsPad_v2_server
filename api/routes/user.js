@@ -3,7 +3,6 @@ const passport = require("passport")
 const router = express.Router();
 const userController = require("../controllers/userController");
 const userMiddleware = require("../middleware/userMiddleware.js");
-const socialAuthMiddleware = require("../middleware/socialAuthMiddleware.js");
 const passportConf = require("../../passport/passport");
 
 router.get("/", userController.user_get_all);

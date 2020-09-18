@@ -17,15 +17,14 @@ passport.use("googleToken", new GoogleTokenStrategy({
   clientSecret
 }, async(accessToken, refreshToken, profile, done)=>{
    const userEmail = profile.emails[0].value
-   console.log(profile.name.givenName)
-   const foundUser = await User.find({ email: userEmail });
-   console.log(foundUser, "FOUND USER DETAILS")
-   if (foundUser.length >= 1)
-   {
-     return done(null, foundUser)
-   }else{
-     console.log("User does not exist")
-   }
+   return done(null, userEmail)
+  //  const foundUser = await User.find({ email: userEmail });
+  //  if (foundUser.length >= 1)
+  //  {
+  //    return done(null, foundUser)
+  //  }else{
+  //    console.log("User does not exist")
+  //  }
 }))
 
 

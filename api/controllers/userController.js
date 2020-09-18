@@ -119,14 +119,30 @@ exports.loginGoogleUser = async(req, res, next)=>
 {
   try{
     const {user} = req;
-    const token = token_generator(user, jwt_key);
-    return res.status(200).json({
-      message: "Auth successfully",
-      token,
-      email: req.user[0].email
+    const foundUser = await User.find({ email: user });
+    if(foundUser.length>=1){
+      const token = token_generator(foundUser, jwt_key);
+      return res.status(200).json({
+        message: "Auth successfully",
+        token,
+        email: user
     });
+    }else{
+      const newUser = new User({
+        _id: new mongoose.Types.ObjectId(),
+        email: user,
+      });
+      const result = await newUser.save();
+      const createdUser = [result]
+      const token = token_generator(createdUser, jwt_key);
+      return res.status(200).json({
+        message: "Auth successfully",
+        token,
+        email: user
+    })
+    }
   }catch(error)
-  {
+  { 
     return res.status(500).json({
       message: "There was an error. Try again",
     });

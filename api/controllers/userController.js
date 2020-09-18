@@ -118,9 +118,8 @@ exports.user_login = async (req, res, next) => {
 exports.loginGoogleUser = async(req, res, next)=>
 {
   try{
-    console.log("Got here");
-    console.log("Existing user", req.user)
-    const token = token_generator(req.user, jwt_key);
+    const {user} = req;
+    const token = token_generator(user, jwt_key);
     return res.status(200).json({
       message: "Auth successfully",
       token,
@@ -128,6 +127,9 @@ exports.loginGoogleUser = async(req, res, next)=>
     });
   }catch(error)
   {
-    console.log("ERROR OCCURRED", error)
+    return res.status(500).json({
+      message: "There was an error. Try again",
+    });
   }
 }
+

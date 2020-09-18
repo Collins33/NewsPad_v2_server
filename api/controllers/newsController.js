@@ -29,6 +29,7 @@ exports.create_news = async (req, res, next) => {
       savedNews
     });
   } catch (error) {
+    console.log(error, "ERROR")
     res.status(500).json({
       message: "There was an error in the operation"
     });
